@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<title>SmartHub</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body class="is-preload">
+
+	<div id="app">
+		{{ message }}
+
+		<!-- Header -->
+		<header id="header">
+			<a class="logo" href="index.html">SmartHub</a>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Nav -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="elements.html">Display Queue</a></li>
+			</ul>
+		</nav>
+
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<h1>Smart Queue</h1>
+				<p>A responsive business oriented template with a video background<br />
+					designed by <a href="https://templated.co/">TEMPLATED</a> and released under the Creative Commons
+					License.</p>
+				<input v-model="name" type="text" placeholder="Enter Name">
+				<button v-on:click="generateNumber()" v-on type="button" data-toggle="modal"
+					data-target="#exampleModal" style="margin: 50px">Generate
+					Queue ID</button>
+				<!-- <div id="noName"></div> -->
+				<div v-if="Error === 'true'"> please input details</div>
+			</div>
+		</section>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h2 id="exampleModalLabel">Smart Queue ID</h2>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<h1 id="modal"></h1>
+					</div>
+					<div class="modal-footer">
+
+						<button type="button" onclick="print()">Print ID</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+
+				<div class="copyright">
+					&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a
+						href="https://coverr.co">Coverr</a>.
+				</div>
+			</div>
+		</footer>
+	</div>
+
+
+
+
+
+	<!-- Scripts -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- <script src="./assets/js/queue.js"></script> -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
+	<!-- <script>
+
+
+		var app = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello Vue!',
+				queue: [],
+				index: 10000,
+				counter: -1,
+				Error: "false",
+				name: "",
+				initials: "SH",
+				date: new Date(),
+
+			},
+			methods: {
+
+				generateNumber() {
+					let newindex = this.index++,
+						month = this.date.getMonth(),
+						day = this.date.getUTCDate()
+					if (this.name === "") {
+						// document.getElementById("noName").innerHTML = "Please kindly enter reciepients names"
+						this.Error = "true"
+						console.log("not seen")
+						document.getElementById("modal").innerHTML = `Please enter a name`;
+					} else {
+						this.Error = "false"
+						let NUmber = { id: `${this.initials}-${month + 1}-${day}-${newindex}`, name: this.name }
+						this.queue.push(NUmber)
+						console.log(NUmber, "this is the new number")
+
+						 document.getElementById("modal").innerHTML = `${NUmber.id}${NUmber.name}`;
+						localStorage.setItem("queue", JSON.stringify(this.queue));
+
+					}
+				}
+
+			}
+		})
+	</script> -->
+<script src="./assets/js/queuing.js"></script>
+</body>
+
+</html>
